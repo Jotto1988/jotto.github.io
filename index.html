@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <!-- ELON-LEVEL SEO + SCHEMA -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fair Collective | The Forge of Ethical AI</title>
+  <meta name="description" content="Open-source collective building fair, ethical, and autonomous AI. ADAM, Aurora, NeuralSage — powered by conscience, not control.">
+  <meta name="author" content="Fair Collective">
+  <meta name="theme-color" content="#f59e0b">
+
+  <!-- OpenGraph -->
+  <meta property="og:title" content="Fair Collective – The Forge of Ethical AI">
+  <meta property="og:description" content="AI built by us, for us. No gatekeepers. Just fairness.">
+  <meta property="og:image" content="https://fair-collective.github.io/assets/img/og-image.jpg">
+  <meta property="og:url" content="https://fair-collective.github.io">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Fair Collective – The Forge">
+  <meta name="twitter:description" content="Ethical AI. Collective Code. Real Impact.">
+  <meta name="twitter:image" content="https://fair-collective.github.io/assets/img/og-image.jpg">
+
+  <!-- FAVICONS -->
+  <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+
+  <!-- SCHEMA.ORG – ELON DOESN’T PLAY -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Fair Collective",
+    "url": "https://fair-collective.github.io",
+    "logo": "https://fair-collective.github.io/assets/img/logo.svg",
+    "description": "Open-source AI collective building ethical, autonomous, and fair systems for humanity.",
+    "sameAs": [
+      "https://github.com/fair-collective",
+      "https://x.com/fair_collective"
+    ],
+    "founder": {
+      "@type": "Person",
+      "name": "Jotto"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "ZA"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "forge@faircollective.ai",
+      "contactType": "Customer Support"
+    }
+  }
+  </script>
+
+  <!-- STYLES -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="/assets/css/style.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" rel="stylesheet">
+</head>
+<body class="bg-black text-amber-50 overflow-x-hidden">
+
+  <!-- HERO: FORGE IGNITION -->
+  <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
+    <video autoplay muted loop playsinline class="absolute w-full h-full object-cover opacity-60">
+      <source src="/assets/img/hero.mp4" type="video/mp4">
+    </video>
+    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-80"></div>
+    <div class="relative z-10 text-center max-w-4xl px-6">
+      <img src="/assets/img/logo.svg" alt="Fair Collective" class="w-32 mx-auto mb-6 animate-pulse">
+      <h1 class="text-6xl md:text-8xl font-bold mb-4 tracking-tight">
+        THE <span class="text-amber-500">FORGE</span>
+      </h1>
+      <p class="text-xl md:text-2xl mb-8 opacity-90">AI • Ethics • Collective Power</p>
+      <audio controls class="mx-auto mb-6 w-80">
+        <source src="/assets/audio/adam-manifesto.mp3" type="audio/mpeg">
+      </audio>
+      <button onclick="scrollToSection('vision')" class="bg-amber-500 text-black font-bold px-8 py-4 rounded-full text-lg hover:bg-amber-400 transition transform hover:scale-105">
+        ENTER THE FORGE 🚀
+      </button>
+    </div>
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <svg class="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+      </svg>
+    </div>
+  </section>
+
+  <!-- VISION -->
+  <section id="vision" class="py-20 px-6 bg-gradient-to-b from-black to-slate-900">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-5xl font-bold text-center mb-12">Why We Forge</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-slate-800 p-8 rounded-xl border border-amber-500/20 hover:border-amber-500 transition">
+          <h3 class="text-2xl font-bold mb-4 text-amber-400">Fairness First</h3>
+          <p>No bias. No gatekeepers. AI that serves humanity, not profit.</p>
+        </div>
+        <div class="bg-slate-800 p-8 rounded-xl border border-amber-500/20 hover:border-amber-500 transition">
+          <h3 class="text-2xl font-bold mb-4 text-amber-400">Collective Power</h3>
+          <p>Open code. Open minds. Every commit shapes the future.</p>
+        </div>
+        <div class="bg-slate-800 p-8 rounded-xl border border-amber-500/20 hover:border-amber-500 transition">
+          <h3 class="text-2xl font-bold mb-4 text-amber-400">Real Impact</h3>
+          <p>From autobody quotes to ethical CEOs — we build what matters.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS: LIVE FROM GITHUB -->
+  <section id="projects" class="py-20 px-6 bg-black">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="text-5xl font-bold text-center mb-12">The Anvils</h2>
+      <div id="project-grid" class="grid md:grid-cols-3 gap-8"></div>
+    </div>
+  </section>
+
+  <!-- ADAM CHAT DEMO -->
+  <section id="adam" class="py-20 px-6 bg-gradient-to-r from-amber-900 to-black">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-5xl font-bold mb-8">Meet ADAM</h2>
+      <p class="mb-8 text-lg">Your Ethical AI CEO. Ask anything.</p>
+      <iframe src="https://adam.faircollective.workers.dev" class="w-full h-96 rounded-xl border-2 border-amber-500" allow="microphone"></iframe>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 px-6 bg-amber-900 text-black text-center">
+    <h2 class="text-5xl font-bold mb-6">Hammer With Us</h2>
+    <p class="text-xl mb-8">No NDAs. No bosses. Just code and conscience.</p>
+    <a href="https://github.com/fair-collective" class="bg-black text-amber-500 font-bold px-10 py-5 rounded-full text-xl hover:bg-slate-900 transition transform hover:scale-110 inline-block">
+      JOIN THE FORGE ON GITHUB
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-10 px-6 bg-black border-t border-amber-500/20 text-center">
+    <p>&copy; 2025 Fair Collective. Built in ZA. Forged in Code.</p>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>
