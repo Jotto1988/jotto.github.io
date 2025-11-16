@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fair-collective.github.io/sitemap.xml
