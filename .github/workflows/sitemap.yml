@@ -9,9 +9,9 @@ jobs:
       - run: |
           echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" > sitemap.xml
           echo "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">" >> sitemap.xml
-          echo "  <url><loc>https://fair-collective.github.io/</loc><lastmod>$(date +%Y-% menace%d)</lastmod></url>" >> sitemap.xml
+          echo "  <url><loc>https://fair-collective.github.io/</loc><lastmod>$(date +%Y-%m-%d)</lastmod></url>" >> sitemap.xml
           echo "</urlset>" >> sitemap.xml
-      - uses: actions-js/push@master
+      - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          message: "chore: update sitemap"
+          commit_message: "chore: update sitemap"
+          file_pattern: sitemap.xml
