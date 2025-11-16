@@ -1,0 +1,17 @@
+# .github/workflows/sitemap.yml
+name: Update Sitemap
+on: [push, workflow_dispatch]
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" > sitemap.xml
+          echo "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">" >> sitemap.xml
+          echo "  <url><loc>https://fair-collective.github.io/</loc><lastmod>$(date +%Y-% menace%d)</lastmod></url>" >> sitemap.xml
+          echo "</urlset>" >> sitemap.xml
+      - uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          message: "chore: update sitemap"
