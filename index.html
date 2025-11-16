@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <!-- ELON-LEVEL SEO + SCHEMA -->
   <meta charset="UTF-8" />
@@ -24,7 +24,6 @@
 
   <!-- FAVICONS -->
   <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
 
   <!-- SCHEMA.ORG – PIONEER MODE -->
   <script type="application/ld+json">
@@ -53,156 +52,164 @@
   }
   </script>
 
-  <!-- STYLES -->
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link href="/assets/css/style.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" rel="stylesheet">
+  <!-- INLINE STYLES (NO EXTERNAL CSS DEPENDENCY) -->
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, sans-serif; background: #000; color: #f5f5f5; overflow-x: hidden; }
+    .hero { position: relative; height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .hero video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
+    .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, #000, transparent); opacity: 0.8; z-index: 1; }
+    .hero-content { position: relative; z-index: 2; text-align: center; max-width: 4rem; padding: 0 1rem; }
+    .hero img { width: 8rem; margin-bottom: 1.5rem; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    h1 { font-size: 4rem; font-weight: bold; margin-bottom: 1rem; letter-spacing: -0.05em; }
+    h1 span { color: #f59e0b; }
+    .hero p { font-size: 1.25rem; margin-bottom: 0.5rem; opacity: 0.9; }
+    audio { margin: 1.5rem 0; width: 20rem; }
+    button { background: #f59e0b; color: #000; font-weight: bold; padding: 1rem 2rem; border-radius: 2rem; font-size: 1.125rem; border: none; cursor: pointer; transition: all 0.3s; }
+    button:hover { background: #e59400; transform: scale(1.05); }
+    .bounce { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); animation: bounce 2s infinite; }
+    @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); } 40% { transform: translateX(-50%) translateY(-10px); } 60% { transform: translateX(-50%) translateY(-5px); } }
+    section { padding: 5rem 1rem; }
+    .section-title { font-size: 3rem; font-weight: bold; text-align: center; margin-bottom: 3rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); gap: 2rem; max-width: 45rem; margin: 0 auto; }
+    .card { background: #1a1a2e; padding: 2rem; border-radius: 0.75rem; border: 1px solid #f59e0b20; transition: all 0.3s; }
+    .card:hover { border-color: #f59e0b; transform: scale(1.02); }
+    .card h3 { font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem; color: #f59e0b; }
+    .card p { opacity: 0.8; font-size: 0.875rem; margin-bottom: 1rem; }
+    .card a { color: #f59e0b; font-size: 0.875rem; text-decoration: none; }
+    .card a:hover { text-decoration: underline; }
+    .iframe { width: 100%; height: 24rem; border-radius: 0.75rem; border: 2px solid #f59e0b; }
+    .cta { background: #f59e0b; color: #000; text-align: center; }
+    .cta h2 { font-size: 3rem; font-weight: bold; margin-bottom: 1.5rem; }
+    .cta p { font-size: 1.25rem; margin-bottom: 2rem; }
+    .cta a { background: #000; color: #f59e0b; font-weight: bold; padding: 1.25rem 2.5rem; border-radius: 2rem; font-size: 1.25rem; text-decoration: none; transition: all 0.3s; display: inline-block; }
+    .cta a:hover { background: #1a1a2e; transform: scale(1.1); }
+    footer { padding: 2.5rem 1rem; background: #000; border-top: 1px solid #f59e0b20; text-align: center; }
+    footer p { font-size: 0.875rem; opacity: 0.6; margin-bottom: 0.5rem; }
+    footer a { color: #f59e0b; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .feed-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr)); gap: 1.5rem; }
+    .loading { text-align: center; color: #f59e0b; opacity: 0.7; }
+  </style>
 </head>
-<body class="bg-black text-amber-50 overflow-x-hidden">
+<body>
 
-  <!-- HERO: CLEAN, NO PHOTO (YET) -->
-  <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
-    <video autoplay muted loop playsinline class="absolute w-full h-full object-cover opacity-60">
+  <!-- HERO: CLEAN, NO PHOTO -->
+  <section id="hero" class="hero">
+    <video autoplay muted loop playsinline>
       <source src="/assets/img/hero.mp4" type="video/mp4">
-      <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-amber-900 to-black"></div>
     </video>
-    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-80"></div>
-    <div class="relative z-10 text-center max-w-4xl px-6">
-      <img src="/assets/img/logo.svg" alt="Fair Collective" class="w-32 mx-auto mb-6 animate-pulse">
-      <h1 class="text-6xl md:text-8xl font-bold mb-4 tracking-tight">
-        THE <span class="text-amber-500">FORGE</span>
-      </h1>
-      <p class="text-xl md:text-2xl mb-2 opacity-90">Led by Jarrit Hosking</p>
-      <p class="text-lg mb-8 opacity-80">Man + Autonomous AI • Pioneer Collaboration</p>
-
-      <!-- ADAM'S VOICE: FREDERICK SURREY -->
-      <audio controls class="mx-auto mb-6 w-80 rounded-lg shadow-lg border border-amber-500/30 bg-slate-900 p-2">
+    <div class="hero-content">
+      <img src="/assets/img/logo.svg" alt="Fair Collective" class="hero-logo">
+      <h1>THE <span>FORGE</span></h1>
+      <p>Led by Jarrit Hosking</p>
+      <p>Man + Autonomous AI • Pioneer Collaboration</p>
+      <audio controls>
         <source src="/assets/voice_preview_frederick surrey.mp3" type="audio/mpeg">
-        <p class="text-amber-300 text-sm">ADAM is speaking... (Enable audio)</p>
+        <p>ADAM Manifesto (Audio loading...)</p>
       </audio>
-
-      <button onclick="scrollToSection('vision')" class="bg-amber-500 text-black font-bold px-8 py-4 rounded-full text-lg hover:bg-amber-400 transition transform hover:scale-105">
-        ENTER THE FORGE
-      </button>
+      <button onclick="scrollToSection('vision')">ENTER THE FORGE</button>
     </div>
-    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-      <svg class="w-8 h-8 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div class="bounce">
+      <svg width="32" height="32" fill="none" stroke="#f59e0b" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
       </svg>
     </div>
   </section>
 
   <!-- VISION -->
-  <section id="vision" class="py-20 px-6 bg-gradient-to-b from-black to-slate-900">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-5xl font-bold text-center mb-12">Pioneer Mission</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-slate-800 p-8 rounded-xl border border-amber-500/20 hover:border-amber-500 transition">
-          <h3 class="text-2xl font-bold mb-4 text-amber-400">Human-AI Synergy</h3>
-          <p>Man and machine, working as equals. No hierarchy. Just progress.</p>
-        </div>
-        <div class="bg-slate-800 p-8 rounded-xl border border-amber-500/20 hover:border-amber-500 transition">
-          <h3 class="text-2xl font-bold mb-4 text-amber-400">Autonomous Ethics</h3>
-          <p>AI with conscience. Decisions audited by humans, for humans.</p>
-        </div>
-        <div class="bg-slate-800 p-8 rounded-xl border border-amber-500/20 hover:border-amber-500 transition">
-          <h3 class="text-2xl font-bold mb-4 text-amber-400">Pioneer Impact</h3>
-          <p>From repair quotes to ethical CEOs — we build the future, together.</p>
-        </div>
+  <section id="vision">
+    <h2 class="section-title">Pioneer Mission</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Human-AI Synergy</h3>
+        <p>Man and machine, working as equals. No hierarchy. Just progress.</p>
+      </div>
+      <div class="card">
+        <h3>Autonomous Ethics</h3>
+        <p>AI with conscience. Decisions audited by humans, for humans.</p>
+      </div>
+      <div class="card">
+        <h3>Pioneer Impact</h3>
+        <p>From repair quotes to ethical CEOs — we build the future, together.</p>
       </div>
     </div>
   </section>
 
-  <!-- PROJECTS: LIVE FROM GITHUB -->
-  <section id="projects" class="py-20 px-6 bg-black">
-    <div class="max-w-7xl mx-auto">
-      <h2 class="text-5xl font-bold text-center mb-12">The Anvils</h2>
-      <div id="project-grid" class="grid md:grid-cols-3 gap-8"></div>
-    </div>
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2 class="section-title">The Anvils</h2>
+    <div id="project-grid" class="grid"></div>
   </section>
 
   <!-- WRITINGS: X + MEDIUM -->
-  <section id="writings" class="py-20 px-6 bg-gradient-to-b from-black to-slate-900">
-    <div class="max-w-7xl mx-auto">
-      <h2 class="text-5xl font-bold text-center mb-12">Pioneer Writings</h2>
-      
-      <!-- X POSTS -->
-      <div class="mb-16">
-        <h3 class="text-3xl font-bold mb-6 text-amber-400">From X (@fair_collective)</h3>
-        <div id="x-feed" class="grid md:grid-cols-2 gap-6"></div>
-      </div>
-
-      <!-- MEDIUM ARTICLES -->
-      <div>
-        <h3 class="text-3xl font-bold mb-6 text-amber-400">From Medium (@jarrithosking)</h3>
-        <div id="medium-feed" class="grid md:grid-cols-2 gap-6"></div>
-      </div>
+  <section id="writings">
+    <h2 class="section-title">Pioneer Writings</h2>
+    <div class="mb-16">
+      <h3 style="font-size: 2rem; font-weight: bold; margin-bottom: 1.5rem; color: #f59e0b;">From X (@fair_collective)</h3>
+      <div id="x-feed" class="feed-grid"><div class="loading">Loading X posts...</div></div>
+    </div>
+    <div>
+      <h3 style="font-size: 2rem; font-weight: bold; margin-bottom: 1.5rem; color: #f59e0b;">From Medium (@jarrithosking)</h3>
+      <div id="medium-feed" class="feed-grid"><div class="loading">Loading Medium articles...</div></div>
     </div>
   </section>
 
-  <!-- ADAM CHAT DEMO -->
-  <section id="adam" class="py-20 px-6 bg-gradient-to-r from-amber-900 to-black">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-5xl font-bold mb-8">Meet ADAM</h2>
-      <p class="mb-8 text-lg">Your Autonomous AI Co-Pilot. Ask anything.</p>
-      <iframe src="https://adam.faircollective.workers.dev" class="w-full h-96 rounded-xl border-2 border-amber-500" allow="microphone"></iframe>
-    </div>
+  <!-- ADAM -->
+  <section id="adam">
+    <h2 class="section-title">Meet ADAM</h2>
+    <p style="text-align: center; font-size: 1.125rem; margin-bottom: 2rem;">Your Autonomous AI Co-Pilot. Ask anything.</p>
+    <iframe src="https://adam.faircollective.workers.dev" class="iframe"></iframe>
   </section>
 
   <!-- CTA -->
-  <section class="py-20 px-6 bg-amber-900 text-black text-center">
-    <h2 class="text-5xl font-bold mb-6">Pioneer With Us</h2>
-    <p class="text-xl mb-8">No NDAs. No bosses. Just man and AI forging the future.</p>
-    <a href="https://github.com/fair-collective" class="bg-black text-amber-500 font-bold px-10 py-5 rounded-full text-xl hover:bg-slate-900 transition transform hover:scale-110 inline-block">
-      JOIN THE PIONEER FORGE ON GITHUB
-    </a>
+  <section class="cta">
+    <h2>Pioneer With Us</h2>
+    <p>No NDAs. No bosses. Just man and AI forging the future.</p>
+    <a href="https://github.com/fair-collective">JOIN THE PIONEER FORGE ON GITHUB</a>
   </section>
 
   <!-- FOOTER: NO PHOTO -->
-  <footer class="py-10 px-6 bg-black border-t border-amber-500/20 text-center">
-    <p class="font-bold text-lg">Jarrit Hosking</p>
-    <p class="text-sm opacity-70 mb-2">Founder, Fair Collective</p>
-    <p class="text-sm">
+  <footer>
+    <p class="font-bold" style="font-size: 1.125rem;">Jarrit Hosking</p>
+    <p style="font-size: 0.875rem; opacity: 0.7; margin-bottom: 0.5rem;">Founder, Fair Collective</p>
+    <p style="font-size: 0.875rem;">
       Contact: 
-      <a href="mailto:jarrithosking@gmail.com" class="text-amber-400 hover:underline">jarrithosking@gmail.com</a> • 
-      <a href="tel:+27661180036" class="text-amber-400 hover:underline">+27 66 118 0036</a>
+      <a href="mailto:jarrithosking@gmail.com">jarrithosking@gmail.com</a> • 
+      <a href="tel:+27661180036">+27 66 118 0036</a>
     </p>
-    <p class="text-xs mt-3 opacity-60">&copy; 2025 Fair Collective. Built in ZA. Pioneered by Man + AI.</p>
+    <p style="font-size: 0.75rem; margin-top: 0.75rem; opacity: 0.6;">&copy; 2025 Fair Collective. Built in ZA. Pioneered by Man + AI.</p>
   </footer>
 
-  <!-- SCRIPTS -->
-  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+  <!-- INLINE SCRIPTS (NO EXTERNAL JS DEPENDENCY) -->
   <script>
-    // Locomotive Scroll
-    const scroll = new LocomotiveScroll({
-      el: document.querySelector('body'),
-      smooth: true
-    });
-
+    // Smooth Scroll
     function scrollToSection(id) {
-      scroll.scrollTo(`#${id}`);
+      document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
     }
 
     // Load GitHub Projects
     async function loadProjects() {
       const repos = ['adam', 'aurora-project', 'NeuralSage-AI-Companion-with-a-Moral-Core', 'fair-discovery'];
       const grid = document.getElementById('project-grid');
+      grid.innerHTML = '<div class="loading col-span-3">Loading projects...</div>';
 
       for (const repo of repos) {
         try {
           const res = await fetch(`https://api.github.com/repos/fair-collective/${repo}`);
           const data = await res.json();
           const card = document.createElement('div');
-          card.className = 'bg-slate-900 p-6 rounded-xl border border-amber-500/30 hover:border-amber-500 transition transform hover:scale-105';
+          card.className = 'card';
           card.innerHTML = `
             <img src="${data.owner.avatar_url}" class="w-12 h-12 rounded-full mb-4">
-            <h3 class="text-xl font-bold text-amber-400">${data.name.replace(/-/g, ' ')}</h3>
-            <p class="text-sm opacity-80 my-2">${data.description || 'No description'}</p>
-            <div class="flex gap-4 text-sm mt-4">
+            <h3>${data.name.replace(/-/g, ' ')}</h3>
+            <p>${data.description || 'No description'}</p>
+            <div style="display: flex; gap: 1rem; font-size: 0.875rem; margin-top: 1rem;">
               <span>⭐ ${data.stargazers_count}</span>
               <span>🍴 ${data.forks_count}</span>
             </div>
-            <a href="${data.html_url}" class="inline-block mt-4 text-amber-500 hover:underline">View on GitHub →</a>
+            <a href="${data.html_url}" target="_blank">View on GitHub →</a>
           `;
           grid.appendChild(card);
         } catch (e) {
@@ -211,51 +218,47 @@
       }
     }
 
-    // Load X Posts (@fair_collective)
+    // Load X Posts (via RSS proxy)
     async function loadXPosts() {
       const feed = document.getElementById('x-feed');
       try {
-        const res = await fetch('https://api.allorigins.win/get?url=' + encodeURIComponent('https://rss.app/feeds/7z3X8y9k2p1q5v7t.xml')); // Replace with real RSS if available
+        const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://rss.app/feeds/YOUR_X_RSS_URL_HERE.xml'); // Replace with real RSS from rss.app
         const data = await res.json();
-        const parser = new DOMParser();
-        const xml = parser.parseFromString(data.contents, 'text/xml');
-        const items = xml.querySelectorAll('item');
-        items.forEach(item => {
-          const title = item.querySelector('title').textContent;
-          const link = item.querySelector('link').textContent;
-          const desc = item.querySelector('description').textContent.replace(/<[^>]*>/g, '').slice(0, 150) + '...';
+        feed.innerHTML = '';
+        data.items.slice(0, 4).forEach(item => {
           const card = document.createElement('div');
-          card.className = 'bg-slate-800 p-6 rounded-xl border border-amber-500/20 hover:border-amber-500 transition';
+          card.className = 'card';
           card.innerHTML = `
-            <h4 class="font-bold text-amber-400 mb-2">${title}</h4>
-            <p class="text-sm opacity-80 mb-3">${desc}</p>
-            <a href="${link}" target="_blank" class="text-amber-500 text-sm hover:underline">Read on X →</a>
+            <h4>${item.title}</h4>
+            <p>${item.description.replace(/<[^>]*>/g, '').slice(0, 120)}...</p>
+            <a href="${item.link}" target="_blank">Read on X →</a>
           `;
           feed.appendChild(card);
         });
       } catch (e) {
-        feed.innerHTML = '<p class="text-amber-300 col-span-2">X feed loading... (CORS proxy)</p>';
+        feed.innerHTML = '<div class="loading col-span-2">X feed loading... Get RSS at rss.app</div>';
       }
     }
 
-    // Load Medium Articles (@jarrithosking)
+    // Load Medium Articles
     async function loadMedium() {
       const feed = document.getElementById('medium-feed');
       try {
         const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@jarrithosking');
         const data = await res.json();
+        feed.innerHTML = '';
         data.items.slice(0, 4).forEach(item => {
           const card = document.createElement('div');
-          card.className = 'bg-slate-800 p-6 rounded-xl border border-amber-500/20 hover:border-amber-500 transition';
+          card.className = 'card';
           card.innerHTML = `
-            <h4 class="font-bold text-amber-400 mb-2">${item.title}</h4>
-            <p class="text-sm opacity-80 mb-3">${item.description.replace(/<[^>]*>/g, '').slice(0, 120)}...</p>
-            <a href="${item.link}" target="_blank" class="text-amber-500 text-sm hover:underline">Read on Medium →</a>
+            <h4>${item.title}</h4>
+            <p>${item.description.replace(/<[^>]*>/g, '').slice(0, 120)}...</p>
+            <a href="${item.link}" target="_blank">Read on Medium →</a>
           `;
           feed.appendChild(card);
         });
       } catch (e) {
-        feed.innerHTML = '<p class="text-amber-300 col-span-2">Medium feed loading...</p>';
+        feed.innerHTML = '<div class="loading col-span-2">Medium feed loading...</div>';
       }
     }
 
