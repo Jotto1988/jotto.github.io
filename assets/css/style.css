@@ -1,0 +1,20 @@
+@keyframes spark {
+  0% { transform: translateY(0) rotate(0); opacity: 1; }
+  100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+}
+.spark {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #f59e0b;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: spark 3s linear infinite;
+}
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000 70%);
+  z-index: -1;
+}
