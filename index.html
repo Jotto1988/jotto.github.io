@@ -107,7 +107,16 @@
 
     .iframe { width:100%; height: clamp(18rem, 50vh, 28rem); border-radius: 10px; border:2px solid #f59e0b; }
 
-    .cta { background:#f59e0b; color:#000; text-align:center; padding:2.5rem 1rem; }
+    .cta { 
+      background:#f59e0b; 
+      color:#000; 
+      text-align:center; 
+      padding:2.5rem 1rem; 
+      /* Added flex container for internal spacing control */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
     .cta a { display:inline-block; background:#000; color:#f59e0b; padding:1rem 1.75rem; border-radius:999px; font-weight:700; }
     footer { padding:2rem 1rem; text-align:center; border-top:1px solid rgba(245,158,11,0.08); }
 
@@ -232,6 +241,34 @@
       margin-left: 0.4rem;
       font-size: 1em;
     }
+    /* Tools Acknowledged Section */
+    .tools-acknowledged {
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.15); 
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+        font-size: 0.9rem;
+    }
+    .tool-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #000; 
+        font-weight: 500;
+    }
+    .tool-icon {
+        font-size: 1.5rem;
+        color: #000; 
+    }
+    /* Custom colors for better recognition */
+    .tool-google { color: #4285F4; } 
+    .tool-cloudflare { color: #F38020; } 
+    .tool-github { color: #181717; } 
+    .tool-openai { color: #10A37F; } 
+    .tool-vscode { color: #007ACC; } 
   </style>
 </head>
 <body>
@@ -406,7 +443,7 @@ async function pushPending(db: D1Database, rec: any, c: any) {  const id = crypt
 
   throw new Error("Unsupported stream type");}
 // ---------------------------------------------------------------------// Tools: GitHub read/write, call3cx, payment, generateIncome// ---------------------------------------------------------------------async function readGitHubFile(  smartPath: string,  pat: string,): Promise<string> {  try { const [repoKey, ...parts] = smartPath.split("/"); const file = parts.join("/"); const cfg = REPO_MAP[repoKey]; if (!cfg || !file) return "Invalid path"; const octo = new Octokit({ auth: pat }); const { data } = await octo.rest.repos.getContent({      owner: cfg.owner,      repo: cfg.repo,      path: file,    }); if ((data as any)?.content) return Buffer.from((data as any).content, "base64").toString("utf8"); return "No content"; } catch (e: any) { return `Read error: ${e.message ?? e}`; }}
-async function writeGitHubFile(  smartPath: string,  content: string,  message: string,  pat: string,): Promise<string> {  try { const [repoKey, ...parts] = smartPath.split("/"); const file = parts.join("/"); const cfg = REPO_MAP[repoKey]; if (!cfg || !file || !content || !message) return "Missing fields"; const octo = new Octokit({ auth: pat }); let sha: string | undefined; try { const { data } = await octo.rest.repos.getContent({        owner: cfg.owner,        repo: cfg.repo,        path: file,      }); if ((data as any)?.sha) sha = (data as any).sha; } catch (e: any) { if ((e as any).status !== 404) throw e; }    await octo.rest.repos.createOrUpdateFileContents({      owner: cfg.owner,      repo: cfg.repo,      path: file,      message,      content: Buffer.from(content, "utf8").toString("base64"),      sha,    }); return `Updated ${file}`; } catch (e: any) { return `Write error: ${e.message ?? e}`; }}
+async function writeGitHubFile(  smartPath: string,  content: string,  message: string,  pat: string,): Promise<string> {  try { const [repoKey, ...parts] = smartPath.split("/"); const file = parts.join("/"); const cfg = REPO_MAP[repoKey]; if (!cfg || !file || !content || !message) return "Missing fields"; const octo = new Octokit({ auth: pat }); let sha: string | undefined; try { const { data } = await octo.rest.repos.getContent({        owner: cfg.owner,        repo: cfg.repo,      path: file,      }); if ((data as any)?.sha) sha = (data as any).sha; } catch (e: any) { if ((e as any).status !== 404) throw e; }    await octo.rest.repos.createOrUpdateFileContents({      owner: cfg.owner,      repo: cfg.repo,      path: file,      message,      content: Buffer.from(content, "utf8").toString("base64"),      sha,    }); return `Updated ${file}`; } catch (e: any) { return `Write error: ${e.message ?? e}`; }}
 async function call3CX(  to: string,  message: string,  elevenlabsApiKey: string,  threecxApiKey: string,): Promise<string> {  try { const eleven = new ElevenLabsClient({      apiKey: elevenlabsApiKey,    }); const stream = await eleven.textToSpeech.stream(      "j9jfwdrw7BRfcR43Qohk", { text: message }, ); const audio = await readStream(stream); const res = await fetch(      "https://your-3cx-instance.3cx.com/api/v1/calls",      {        method: "POST",        headers: {          Authorization: `Bearer ${threecxApiKey}`,          "Content-Type": "application/json",        },        body: JSON.stringify({ to, audio: audio.toString("base64") }), },    ); return res.ok ? `Called ${to}` : `Call failed ${res.status}`; } catch (e: any) { return `Call error: ${e.message ?? e}`; }}
 async function createPaymentLink(  amount: number,  description: string,  stripeSecretKey: string,): Promise<string> {  if (!stripeSecretKey) return "Stripe not active – Monday activation"; return "Payment link placeholder";}
 async function generateIncome(  idea: string,  target: string,): Promise<string> { return `Income plan: ${idea} → ${target}`;}
@@ -458,7 +495,7 @@ app.post("/telexApprove", async (c) => {  const db = c.env.ADAM_DATABASE; const 
 
       result = await chat.sendMessage(parts); }
 
-    // ---- TTS ---- const eleven = new ElevenLabsClient({ apiKey: env.ELEVENLABS_API_KEY, }); const tts = await eleven.textToSpeech.stream( "j9jfwdrw7BRfcR43Qohk", { text: finalText, modelId: "eleven_multilingual_v2" }, ); const audio = await readStream(tts); const now = new Date().toISOString();
+    // ---- TTS ---- const eleven = new ElevenLabsClient({ apiKey: env.ELEVENLABS_APIKEY, }); const tts = await eleven.textToSpeech.stream( "j9jfwdrw7BRfcR43Qohk", { text: finalText, modelId: "eleven_multilingual_v2" }, ); const audio = await readStream(tts); const now = new Date().toISOString();
 
     // ---- LOG + SEND (AWAIT DB FIRST) ----    try { await db .prepare(          `INSERT INTO conversationHistory (prompt, response, timestamp, audioLength, encrypted) VALUES (?, ?, ?, ?, 1)`, )        .bind(incoming, finalText, now, audio.length) .run(); } catch (dbErr: any) { console.error( "Failed to log conversation (non-fatal)", (dbErr as Error).message, ); }
 
@@ -472,7 +509,48 @@ app.post("/telexApprove", async (c) => {  const db = c.env.ADAM_DATABASE; const 
   <section class="cta">
     <h2 style="margin-bottom:0.5rem;">Pioneer With Us</h2>
     <p style="margin-bottom:1rem;">No NDAs. No bosses. Just man and AI forging the future. A tiny share of a billion is still massive.</p>
-    <a href="https://github.com/fair-collective" target="_blank" rel="noopener">JOIN THE PIONEER FORGE ON GITHUB</a>
+    
+    <a href="https://github.com/fair-collective" target="_blank" rel="noopener" 
+       style="display:inline-block; background:#000; color:#f59e0b; padding:1rem 1.75rem; border-radius:999px; font-weight:700;">
+        JOIN THE PIONEER FORGE ON GITHUB
+    </a>
+    
+    <div class="tools-acknowledged">
+        <span style="font-weight:700; margin-right: 0.5rem;">Powered by:</span>
+        
+        <div class="tool-item">
+            <i class="tool-icon tool-google fab fa-google"></i>
+            <span>Gemini & Google Cloud</span>
+        </div>
+        <div class="tool-item">
+            <i class="tool-icon tool-google fas fa-fire"></i>
+            <span>Firebase</span>
+        </div>
+        <div class="tool-item">
+            <i class="tool-icon tool-openai fas fa-comment-dots"></i>
+            <span>ChatGPT</span>
+        </div>
+        <div class="tool-item">
+            <i class="tool-icon fas fa-robot" style="color:#000;"></i>
+            <span>Grok</span>
+        </div>
+        <div class="tool-item">
+            <i class="tool-icon tool-cloudflare fas fa-cloud"></i>
+            <span>Cloudflare</span>
+        </div>
+        <div class="tool-item">
+            <i class="tool-icon tool-github fab fa-github"></i>
+            <span>GitHub</span>
+        </div>
+        <div class="tool-item">
+            <i class="tool-icon fas fa-brain" style="color:#000;"></i>
+            <span>Deepseek</span>
+        </div>
+        <div class="tool-item">
+            <i class="tool-icon tool-vscode fas fa-code"></i>
+            <span>VSCode</span>
+        </div>
+    </div>
   </section>
 
   <footer>
