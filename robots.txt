@@ -1,4 +1,8 @@
+# Fair Collective - robots.txt for GitHub Pages
 User-agent: *
 Allow: /
 
-Sitemap: https://fair-collective.github.io/sitemap.xml
+# Direct bots to the Sitemaps provided below
+# Replace 'jotto1988.github.io/jotto.github.io' with your custom domain later, if applicable
+Sitemap: https://jotto1988.github.io/jotto.github.io/sitemap.xml
+Sitemap: https://jotto1988.github.io/jotto.github.io/sitemap.yaml
