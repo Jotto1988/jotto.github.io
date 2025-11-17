@@ -69,11 +69,19 @@
       padding: 2rem 1rem;
       overflow: hidden;
     }
+    /* RESTORED: Style the HTML5 video element */
     .hero video {
-      position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.6;
+      position:absolute; 
+      inset:0; 
+      width:100%; 
+      height:100%; 
+      object-fit:cover; 
+      opacity:0.6;
     }
     .hero::before {
-      content:""; position:absolute; inset:0;
+      content:""; 
+      position:absolute; 
+      inset:0;
       background: linear-gradient(to top, #000, rgba(0,0,0,0.05));
       z-index:1;
     }
@@ -106,25 +114,6 @@
     .card p { color: #dcdcdc; opacity:0.9; font-size:0.95rem; }
 
     .iframe { width:100%; height: clamp(18rem, 50vh, 28rem); border-radius: 10px; border:2px solid #f59e0b; }
-    /* Responsive Video Container */
-    .video-container {
-      position: relative;
-      width: 100%;
-      max-width: 800px;
-      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-      margin: 0 auto 3rem;
-      background: #111;
-      border-radius: 10px;
-      overflow: hidden;
-      border: 2px solid #00f5ff;
-    }
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
 
     .cta { 
       background:#f59e0b; 
@@ -291,9 +280,10 @@
   </style>
 </head>
 <body>
+  
   <section id="hero" class="hero">
     <video autoplay muted loop playsinline preload="auto">
-      <source src="https://jotto1988.github.io/jotto.github.io/assets/img/hero.mp4" type="video/mp4">
+      <source src="https://raw.githubusercontent.com/Jotto1988/jotto.github.io/main/assets/Forge%20Fair%20Future.mp4" type="video/mp4">
     </video>
 
     <div class="hero-content">
@@ -349,15 +339,6 @@
     </div>
     <p style="margin-top:36px; font-weight:700; color:#f59e0b; text-align:center; font-size:1.125rem;">Forge on.</p>
   </section>
-
-  <div class="video-container">
-    <iframe src="https://app.heygen.com/embedded-player/26b76208a7384e58a3196bf0a72e50cc" 
-            title="HeyGen video player" 
-            frameborder="0" 
-            allow="encrypted-media; fullscreen;" 
-            allowfullscreen>
-    </iframe>
-  </div>
 
   <section id="projects">
     <h2 class="section-title">The Anvils</h2>
