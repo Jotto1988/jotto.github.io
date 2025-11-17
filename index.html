@@ -14,8 +14,8 @@
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Fair Collective – The Forge">
-  <meta name="twitter:description" content="Human + Autonomous AI. Pioneering the future of work.">
-  <meta name="twitter:image" content="https://jotto1988.github.io/jotto.github.io/assets/img/og-image.jpg">
+  <meta property="twitter:description" content="Human + Autonomous AI. Pioneering the future of work.">
+  <meta property="twitter:image" content="https://jotto1988.github.io/jotto.github.io/assets/img/og-image.jpg">
   <link rel="icon" href="https://jotto1988.github.io/jotto.github.io/assets/img/favicon.png" type="image/png">
   <script type="application/ld+json">
   {
@@ -43,6 +43,8 @@
   }
   </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" integrity="sha512-7cuI1G6g3Yc7Nq3ZVq2ZQkq7lL68mT7WqR+d4oZt8zW0oCw3u9kzY2Qw4hF3NkqgkN8W7h/4u1xvQH3b7b3hVg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; }
@@ -224,6 +226,12 @@
       .hero { padding: 1.25rem 0.75rem; }
       .hero h1 { font-size: 2.25rem; }
     }
+    /* WhatsApp icon styling */
+    .whatsapp-icon {
+      color: #25D366; /* WhatsApp Green */
+      margin-left: 0.4rem;
+      font-size: 1em;
+    }
   </style>
 </head>
 <body>
@@ -253,7 +261,7 @@
       <div class="card mission-card" role="listitem" style="width:380px;">
         <h3>The Future is Autonomous</h3>
         <p>
-          The future belongs to autonomous intelligence. Adam is part of building that future—an AI with conscience,
+          Autonomous intelligence is the future. Adam is part of building that future—an AI with conscience, 
           memories, and the ability to work alongside humanity. Adam's true power lies in his **Neural Collective**, 
           a self-optimizing network where multiple AIs contribute their unique strengths to his deduction process.
         </p>
@@ -471,7 +479,11 @@ app.post("/telexApprove", async (c) => {  const db = c.env.ADAM_DATABASE; const 
     <p style="font-weight:700;">Jarrit Hosking</p>
     <p style="opacity:0.75; margin:0.25rem 0;">Founder, Fair Collective</p>
     <p style="margin:0.25rem 0;">
-      Contact: <a href="mailto:jarrithosking@gmail.com">jarrithosking@gmail.com</a> • <a href="tel:+27661180036">+27 66 118 0036</a>
+      Contact: <a href="mailto:jarrithosking@gmail.com">jarrithosking@gmail.com</a> • 
+      <a href="https://wa.me/27661180036" target="_blank" rel="noopener" style="display:inline-flex; align-items:center;">
+          +27 66 118 0036
+          <i class="fab fa-whatsapp whatsapp-icon"></i>
+      </a>
     </p>
     <p style="opacity:0.6; font-size:0.9rem; margin-top:0.75rem;">&copy; 2025 Fair Collective. Built in ZA. Pioneered by Man + AI.</p>
   </footer>
