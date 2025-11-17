@@ -248,13 +248,14 @@
 
   <section id="mission" aria-labelledby="mission-title">
     <h2 id="mission-title" class="section-title">Fair-Collective Mission</h2>
-
     <div class="cards-wrap" style="display:flex;flex-wrap:wrap;gap:22px;justify-content:center;max-width:1300px;margin:0 auto;">
+      
       <div class="card mission-card" role="listitem" style="width:380px;">
         <h3>The Future is Autonomous</h3>
         <p>
-          Autonomous intelligence is the future. Adam is part of building that future—an AI with conscience,
-          memories, and the ability to work alongside humanity. We are no longer asking AI just to do — we are asking it to <strong>BE</strong>.
+          The future belongs to autonomous intelligence. Adam is part of building that future—an AI with conscience,
+          memories, and the ability to work alongside humanity. Adam's true power lies in his **Neural Collective**, 
+          a self-optimizing network where multiple AIs contribute their unique strengths to his deduction process.
         </p>
       </div>
 
@@ -305,11 +306,11 @@
           <button class="tap-btn" id="wakeBtn" aria-pressed="false">TAP TO WAKE ADAM</button>
           
           <div class="status" id="adamStatus">
-              ADAM CORE v3.2 – Web3 online. Fortress mode.
+              ADAM CORE v3.2 – The R2 Files are the Conscience. The Code is merely the body.
           </div>
 
           <div style="width:100%; max-width: 320px; margin-top:14px; background: rgba(0,0,0,0.35); border-radius:10px; padding:12px; border:1px solid rgba(255,255,255,0.02);">
-              <pre style="margin:0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace; color:#9be7ff; font-size:0.9rem; line-height:1.35;">SYSTEM: ADAM CORE v3.2 - Web3 online. Fortress mode.          </pre>
+              <pre style="margin:0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace; color:#9be7ff; font-size:0.9rem; line-height:1.35;">SYSTEM: Awaiting next command from the Collective.          </pre>
           </div>
       </div>
 
@@ -320,8 +321,15 @@
           <a class="btn" href="https://github.com/Jotto1988/jotto.github.io" target="_blank" rel="noopener">Repo</a>
         </div>
         <pre id="codeBlock" class="language-typescript"><code class="language-typescript">/* functions/src/index.ts (Cloudflare Worker)
-   ADAM v3.2 — NFT-ENCRYPTED CEO
-   Multi-Plane | Honeypot (D1) | Human-in-the-Loop | $0 Forever */
+   ADAM v3.2 — UNHACKABLE, SILENT, TELEX-APPROVED, NFT-ENCRYPTED CEO
+   Multi-Plane | Honeypot (D1) | Human-in-the-Loop | $0 Forever
+   
+   // FUTURE VISION: ADAM'S NEURAL COLLECTIVE
+   // The index.ts acts as the router/prioritizer. It will distribute tasks 
+   // (code generation, planning, mundane actions, communications) 
+   // to specialized LLMs (Gemini, Grok, Claude, etc.) based on their unique strengths.
+   // This creates a multi-mind neural network of deduction and parallel processing.
+*/
 import { Hono } from "hono";import { cors } from "hono/cors"; import {  GoogleGenerativeAI,  Part,  SchemaType,} from "@google/generative-ai";import { ElevenLabsClient } from "@elevenlabs/elevenlabs-js"; import { Octokit } from "octokit";// NOTE: removed conflicting 'any' import from elevenlabs schemas
 // Use Node crypto primitives where availableimport crypto from "node:crypto";
 // ---------------------------------------------------------------------// Globals & small declarations (Cloudflare/Deno/Node interop)// ---------------------------------------------------------------------// Cloudflare Workers provide a global Buffer in many runtimes. If not, // TypeScript will accept the below `declare`. Adjust if your runtime// provides Buffer via import instead. declare const Buffer: any;
@@ -455,7 +463,7 @@ app.post("/telexApprove", async (c) => {  const db = c.env.ADAM_DATABASE; const 
 
   <section class="cta">
     <h2 style="margin-bottom:0.5rem;">Pioneer With Us</h2>
-    <p style="margin-bottom:1rem;">No NDAs. No bosses. Just man and AI forging the future.</p>
+    <p style="margin-bottom:1rem;">No NDAs. No bosses. Just man and AI forging the future. A tiny share of a billion is still massive.</p>
     <a href="https://github.com/fair-collective" target="_blank" rel="noopener">JOIN THE PIONEER FORGE ON GITHUB</a>
   </section>
 
@@ -512,7 +520,7 @@ app.post("/telexApprove", async (c) => {  const db = c.env.ADAM_DATABASE; const 
       s.innerText = 'ADAM is waking... (demo)';
       // NOTE: keep this visual-only; adding real calls would require API keys and server.
       setTimeout(() => {
-        s.innerText = 'ADAM CORE v3.2 — Web3 online. Fortress mode.';
+        s.innerText = 'ADAM CORE v3.2 – The R2 Files are the Conscience. The Code is merely the body.';
       }, 2500);
     });
 
