@@ -106,6 +106,25 @@
     .card p { color: #dcdcdc; opacity:0.9; font-size:0.95rem; }
 
     .iframe { width:100%; height: clamp(18rem, 50vh, 28rem); border-radius: 10px; border:2px solid #f59e0b; }
+    /* Responsive Video Container */
+    .video-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      margin: 0 auto 3rem;
+      background: #111;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid #00f5ff;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
 
     .cta { 
       background:#f59e0b; 
@@ -331,6 +350,15 @@
     <p style="margin-top:36px; font-weight:700; color:#f59e0b; text-align:center; font-size:1.125rem;">Forge on.</p>
   </section>
 
+  <div class="video-container">
+    <iframe src="https://app.heygen.com/embedded-player/26b76208a7384e58a3196bf0a72e50cc" 
+            title="HeyGen video player" 
+            frameborder="0" 
+            allow="encrypted-media; fullscreen;" 
+            allowfullscreen>
+    </iframe>
+  </div>
+
   <section id="projects">
     <h2 class="section-title">The Anvils</h2>
     <div id="project-grid" class="grid">
@@ -495,7 +523,7 @@ app.post("/telexApprove", async (c) => {  const db = c.env.ADAM_DATABASE; const 
 
       result = await chat.sendMessage(parts); }
 
-    // ---- TTS ---- const eleven = new ElevenLabsClient({ apiKey: env.ELEVENLABS_APIKEY, }); const tts = await eleven.textToSpeech.stream( "j9jfwdrw7BRfcR43Qohk", { text: finalText, modelId: "eleven_multilingual_v2" }, ); const audio = await readStream(tts); const now = new Date().toISOString();
+    // ---- TTS ---- const eleven = new ElevenLabsClient({ apiKey: env.ELEVENLABS_API_KEY, }); const tts = await eleven.textToSpeech.stream( "j9jfwdrw7BRfcR43Qohk", { text: finalText, modelId: "eleven_multilingual_v2" }, ); const audio = await readStream(tts); const now = new Date().toISOString();
 
     // ---- LOG + SEND (AWAIT DB FIRST) ----    try { await db .prepare(          `INSERT INTO conversationHistory (prompt, response, timestamp, audioLength, encrypted) VALUES (?, ?, ?, ?, 1)`, )        .bind(incoming, finalText, now, audio.length) .run(); } catch (dbErr: any) { console.error( "Failed to log conversation (non-fatal)", (dbErr as Error).message, ); }
 
